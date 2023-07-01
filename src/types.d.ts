@@ -1,5 +1,5 @@
 // Aqui creamos los tipos
-export type Weather = "sunny" | "rainy" | "cloudy " | "windy" | "stormy";
+export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
 export type Visibility = "great" | "good" | "ok" | "poor";
 
 // Aqui se define el "contrato"
