@@ -18,12 +18,17 @@ router.get('/:id', (req, res) => {
 
 // Ruta para crear datos
 router.post('/', (req, res) => {
-  // Introduce los datos en el body
-  const { date, weather, visibility, comment } = req.body
-  // Se llama al metodo addEntry para crear nuevos datos
-  const newDiaryEntry = diaryServices.addDiary(date, weather, visibility, comment)
-  // Se transforma a json
-  res.json(newDiaryEntry)
+  try {
+    // Introduce los datos en el body
+
+    const newDiaryEntry = toNewDiaryEntry(req.body)
+    // Se llama al metodo addEntry para crear nuevos datos
+    const addedDiaryEntry = diaryServices.addDiary(newDiaryEntry)
+    // Se transforma a json
+    res.json(addedDiaryEntry)
+  } catch (e) {
+    res.status(400).send(e.message)
+  }
 })
 
 export default router

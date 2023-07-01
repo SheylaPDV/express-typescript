@@ -1,6 +1,6 @@
 // typescript por defecto no es capaz de importar esto. en tsconfig.json añadiremos: "resolveJsonModule": true,
 // Si no pones la extension al final, ts busca los archivos en este orden: (.tsx, .ts, .node, .js, .json.)
-import { DiaryEntry, NonSensitiveInfoDiaryEntry, Visibility, Weather } from '../types'
+import { DiaryEntry, NonSensitiveInfoDiaryEntry, NewDiaryEntry } from '../types'
 import diaryData from './diaries.json'
 
 // Importamos el tipo personalizado creado en types.d.ts
@@ -31,14 +31,11 @@ export const getEntriesWithoutSensitiveInfo = (): NonSensitiveInfoDiaryEntry[] =
   })
 }
 
-export const addDiary = (date: string, weather: Weather, visibility: Visibility, comment: string): DiaryEntry => {
-  const newDiaryEntry = {
+export const addDiary = (newDiaryEntry: NewDiaryEntry): DiaryEntry => {
+  const newDiary = {
     id: Math.max(...diaries.map(d => d.id)) + 1,
-    date,
-    weather,
-    visibility,
-    comment
+    ...newDiaryEntry
   }
-  diaries.push(newDiaryEntry)
-  return newDiaryEntry
+  diaries.push(newDiary)
+  return newDiary
 }

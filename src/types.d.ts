@@ -16,6 +16,8 @@ export interface DiaryEntry {
 // De esta forma, se queda con todos menos con comentario.
 export type NonSensitiveInfoDiaryEntry = Omit<DiaryEntry, 'comment'>
 
+export type NewDiaryEntry = Omit<DiaryEntry, 'id'>
+
 // Esto lo que hace es heredar todos los tipos de DiaryEntry + el nuevo tipo creado. se puede hacer con type pero la sintaxis es menos legible
 // interface SpecialDiaryEntry extends DiaryEntry {
 //     flightNumber: number
